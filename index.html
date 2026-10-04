@@ -115,7 +115,8 @@
   .env-letter small{font-size:.78rem;letter-spacing:.14em;color:var(--gold-dark)}
   .env-letter .names{font-family:var(--script);font-size:clamp(2.1rem,9vw,2.9rem);color:var(--olive);line-height:1.1;margin:.2rem 0}
   .env-letter .date{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--muted)}
-  .env-letter .for{font-family:var(--serif);font-size:1rem;color:var(--gold-dark);margin-top:.5rem}
+  .env-letter .for{font-family:var(--serif);font-size:1.2rem;line-height:1.2;color:var(--gold-dark);margin-top:.5rem}
+  .env-letter .for.long{font-size:.98rem}
   .env-letter .pases{display:inline-block;margin-top:.45rem;padding:.2rem .95rem;border:1px solid var(--line);border-radius:999px;font-size:.78rem;letter-spacing:.08em;color:var(--olive)}
   .env-letter .pases:empty{display:none}
 
@@ -333,8 +334,6 @@
 <div id="intro">
   <div class="intro-top">
     <p class="intro-lead" id="introLead">Una invitación especial para ti</p>
-    <div class="intro-name" id="introName"></div>
-    <div class="intro-pases" id="introPasesTop"></div>
   </div>
 
   <div class="env" id="env" role="button" tabindex="0" aria-label="Abrir la invitación">
@@ -586,10 +585,8 @@ const pases  = np >= 1 && np <= 20 ? np : null;      // null = enlace general, s
 const pasesTxt = pases ? "Invitación para " + pases + (pases === 1 ? " persona" : " personas") : "";
 const guestLine = [guest, pasesTxt].filter(Boolean).join(" · ");
 
-if (guest)    $("introGuest").textContent = "Para " + guest;
+if (guest)    { $("introGuest").textContent = "Para " + guest; if (guest.length > 17) $("introGuest").classList.add("long"); }
 if (pasesTxt) $("introPases").textContent = pasesTxt;
-if (guest)    { $("introLead").textContent = "Una invitación especial para"; $("introName").textContent = guest; }
-if (pasesTxt) $("introPasesTop").textContent = pasesTxt;
 $("heroGuest").textContent = guestLine;
 if (guest) { $("rName").value = guest; $("nameField").hidden = true; }   // ya sabemos quién es
 if (guestLine) { $("rNote").hidden = false; $("rNote").textContent = guestLine; }
@@ -639,7 +636,7 @@ function openEnvelope() {
     document.body.classList.remove("locked");
     window.scrollTo(0, 0);
     setTimeout(() => intro.remove(), 1400);
-  }, 3200);
+  }, 5000);
 }
 env.addEventListener("click", openEnvelope);
 env.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openEnvelope(); } });
