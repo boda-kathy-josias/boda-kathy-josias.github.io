@@ -207,6 +207,19 @@
   .dots button{width:8px;height:8px;border-radius:50%;border:1px solid var(--gold);background:transparent;padding:0;cursor:pointer}
   .dots button.on{background:var(--gold)}
 
+  /* ---------- Historia corta + carrusel de recuerdos ---------- */
+  .story-text{max-width:620px;margin:2.5rem auto 0}
+  .story-text h3{font-size:clamp(1.8rem,4.6vw,2.6rem);font-weight:400;font-style:italic;color:var(--olive);margin-bottom:1.4rem}
+  .story-text p{font-family:var(--serif);font-size:clamp(1.15rem,3.2vw,1.35rem);line-height:1.65;color:var(--ink);margin-bottom:1.1rem}
+  .mem-title{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.6rem,4vw,2.1rem);color:var(--gold-dark);margin:3.5rem 0 1.4rem}
+  .memories{position:relative;width:100%;max-width:520px;aspect-ratio:4/5;margin:0 auto;overflow:hidden;border-radius:4px;background:var(--sand);box-shadow:0 30px 50px -30px rgba(60,45,20,.5);touch-action:pan-y;outline-offset:4px}
+  .mem-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease}
+  .mem-slide.on{opacity:1}
+  .mem-bg{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(26px) saturate(1.1);transform:scale(1.05)}
+  .mem-slide img{position:relative;display:block;width:100%;height:100%;object-fit:contain}
+  .dots + .chapters{margin-top:5.5rem}
+  @media(hover:none){.memories .arrow{display:none}}
+
   /* ---------- Capítulos de la historia ---------- */
   .chapters{list-style:none;margin:3.5rem 0 0;padding:0;display:grid;gap:clamp(4rem,9vw,6.5rem)}
   .chapter{display:grid;gap:1.8rem;align-items:center;text-align:center}
@@ -390,43 +403,21 @@
       <h2>Nuestra historia de amor</h2>
       <div class="divider"><i></i></div>
 
+      <div class="story-text">
+        <h3>Una pasión compartida y un viaje inolvidable</h3>
+        <p>Nos vimos por primera vez en la universidad, pero fue gracias a nuestro amor por los Husky que tuvimos nuestra primera conversación 5 años después.</p>
+        <p>Después de comenzar a salir, un viaje a Nicaragua nos permitió descubrir una conexión especial, enamorarnos y comenzar oficialmente nuestra historia de amor.</p>
+      </div>
+
+      <h3 class="mem-title" id="memTitle" hidden>Algunos de nuestros recuerdos juntos</h3>
+      <div class="memories" id="memories" hidden role="region" aria-roledescription="carrusel" aria-label="Recuerdos de Josias y Katherine" tabindex="0"
+           data-photos="fotos/husky.jpg,fotos/recuerdo-1.jpg,fotos/recuerdo-2.jpg,fotos/recuerdo-3.jpg,fotos/europa-1.jpg,fotos/europa-2.jpg,fotos/europa-3.jpg,fotos/europa-4.jpg,fotos/maravilla-1.jpg,fotos/maravilla-2.jpg">
+        <button class="arrow prev" id="memPrev" aria-label="Foto anterior">‹</button>
+        <button class="arrow next" id="memNext" aria-label="Foto siguiente">›</button>
+      </div>
+      <div class="dots" id="memDots"></div>
+
       <ol class="chapters">
-
-        <li class="chapter">
-          <figure class="ph" data-photos="fotos/husky.jpg" data-alt="Kathy y Josias con su Husky"></figure>
-          <div>
-            <span class="kicker">El comienzo</span>
-            <h3>Universidad y una pasión compartida</h3>
-            <p>Nos vimos por primera vez en las aulas universitarias sin llegar a hablarnos. Tiempo después, las redes sociales y el amor por nuestros perritos Husky se convirtieron en el puente perfecto para iniciar nuestra primera conversación.</p>
-          </div>
-        </li>
-
-        <li class="chapter">
-          <figure class="ph" data-photos="fotos/nicaragua.jpg" data-alt="Viaje a Nicaragua"></figure>
-          <div>
-            <span class="kicker">El enamoramiento</span>
-            <h3>Un viaje inolvidable</h3>
-            <p>Comenzamos a salir y la conexión fue tan especial que Josias decidió unirse a un viaje que Kathy ya tenía planeado con sus amigas a Nicaragua. Fue en ese viaje donde nos enamoramos e iniciamos formalmente nuestro noviazgo.</p>
-          </div>
-        </li>
-
-        <li class="chapter">
-          <figure class="ph" data-photos="fotos/europa-1.jpg,fotos/europa-2.jpg,fotos/europa-3.jpg,fotos/europa-4.jpg" data-alt="Aventuras por Europa"></figure>
-          <div>
-            <span class="kicker">Nuevos horizontes</span>
-            <h3>Aventuras por Europa</h3>
-            <p>La vida nos regaló la hermosa oportunidad de cruzar el océano juntos, acumulando recuerdos imborrables y fortaleciendo nuestro amor con cada ciudad recorrida.</p>
-          </div>
-        </li>
-
-        <li class="chapter">
-          <figure class="ph" data-photos="fotos/maravilla-1.jpg,fotos/maravilla-2.jpg" data-alt="Dos maravillas del mundo"></figure>
-          <div>
-            <span class="kicker">Experiencias únicas</span>
-            <h3>Dos maravillas del mundo</h3>
-            <p>A lo largo de nuestros viajes hemos tenido la dicha de visitar juntos dos maravillas del mundo, confirmando que descubrir el planeta a tu lado es nuestro pasatiempo favorito.</p>
-          </div>
-        </li>
 
         <li class="chapter">
           <figure class="ph" data-photos="fotos/compromiso.jpg" data-alt="La propuesta de matrimonio"></figure>
@@ -535,7 +526,7 @@
     <div class="wrap">
       <h2>¿Nos acompañas?</h2>
       <div class="divider"><i></i></div>
-      <p class="lead">Confirma tu asistencia antes del <strong style="font-weight:500">4 de noviembre de 2026</strong>.</p>
+      <p class="lead">Confirma tu asistencia antes del <strong style="font-weight:500">14 de noviembre de 2026</strong>.</p>
 
       <div class="rsvp">
         <p class="pass-note" id="rNote" hidden></p>
@@ -701,6 +692,73 @@ document.querySelectorAll(".ph").forEach(async fig => {
     slides[cur].classList.add("on"); dEls[cur].classList.add("on");
   }, 4500 + Math.random() * 1200);
 });
+
+/* ---------- Carrusel de recuerdos (foto completa sobre fondo difuminado) ---------- */
+(async function memories() {
+  const box = $("memories");
+  if (!box) return;
+  const list = box.dataset.photos.split(",").map(s => s.trim());
+  const ok = [];
+  await Promise.all(list.map((src, idx) => new Promise(res => {
+    const im = new Image();
+    im.onload  = () => { ok.push({ src, idx }); res(); };
+    im.onerror = res;
+    im.src = src;
+  })));
+  if (!ok.length) return;                       // sin fotos: el carrusel y su título siguen ocultos
+  ok.sort((a, b) => a.idx - b.idx);
+
+  const dotsBox = $("memDots"), prev = $("memPrev"), next = $("memNext");
+  const slides = ok.map((o, i) => {
+    const d = document.createElement("div");
+    d.className = "mem-slide" + (i === 0 ? " on" : "");
+    const bg = document.createElement("div");
+    bg.className = "mem-bg"; bg.style.backgroundImage = 'url("' + o.src + '")';
+    const im = document.createElement("img");
+    im.src = o.src; im.alt = "Recuerdo de Josias y Katherine, foto " + (i + 1);
+    d.append(bg, im);
+    box.insertBefore(d, prev);
+    return d;
+  });
+  $("memTitle").hidden = false; box.hidden = false;
+
+  let cur = 0, timer, hover = false, inView = true;
+  const dots = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.setAttribute("aria-label", "Ir a la foto " + (i + 1));
+    b.addEventListener("click", () => { go(i); restart(); });
+    dotsBox.appendChild(b); return b;
+  });
+  function go(i) {
+    cur = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle("on", k === cur));
+    dots.forEach((d, k) => d.classList.toggle("on", k === cur));
+  }
+  function restart() {
+    clearInterval(timer);
+    if (slides.length > 1) timer = setInterval(() => { if (!hover && inView && !document.hidden) go(cur + 1); }, 5500);
+  }
+  go(0); restart();
+
+  if (slides.length < 2) { prev.hidden = next.hidden = true; dotsBox.hidden = true; return; }
+  prev.addEventListener("click", () => { go(cur - 1); restart(); });
+  next.addEventListener("click", () => { go(cur + 1); restart(); });
+  box.addEventListener("mouseenter", () => hover = true);
+  box.addEventListener("mouseleave", () => hover = false);
+  box.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft")  { go(cur - 1); restart(); }
+    if (e.key === "ArrowRight") { go(cur + 1); restart(); }
+  });
+  let x0 = null;
+  box.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { go(cur + (dx < 0 ? 1 : -1)); restart(); }
+    x0 = null;
+  });
+  if (window.IntersectionObserver) new IntersectionObserver(e => { inView = e[0].isIntersecting; }).observe(box);
+})();
 
 /* ---------- Mosaico de familia + vista ampliada ---------- */
 (function family() {
