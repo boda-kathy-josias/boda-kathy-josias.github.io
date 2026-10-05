@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Josias y Katherine · Nuestra boda</title>
+<title>Josías y Katherine · Nuestra boda</title>
 <meta name="theme-color" content="#FAF6EF">
 
 <!--
@@ -12,7 +12,7 @@
   WhatsApp necesita la URL COMPLETA de la imagen (no sirve la ruta corta).
 -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Josias y Katherine · Nuestra boda">
+<meta property="og:title" content="Josías y Katherine · Nuestra boda">
 <meta property="og:description" content="Domingo 29 de noviembre de 2026 · 4:00 PM. Abre tu invitación.">
 <meta property="og:image" content="https://boda-kathy-josias.github.io/fotos/portada.jpg">
 <meta property="og:url" content="https://boda-kathy-josias.github.io/">
@@ -310,10 +310,10 @@
   .rsvp .btn{width:100%;text-align:center}
 
   /* ---------- Pie ---------- */
-  footer{padding:4rem 1.5rem 5rem;text-align:center;background:var(--olive);color:#EFE8D8}
+  footer{padding:4rem 1.5rem 5rem;text-align:center;background:#073f86;color:#FFFFFF}
   footer .names{font-family:var(--serif);font-weight:300;font-size:2.4rem;line-height:1.1}
-  footer .names .script{color:var(--gold-light);font-size:1.1em}
-  footer p{margin:.8rem 0 0;font-size:.9rem;letter-spacing:.14em;color:var(--gold-light)}
+  footer .names .script{color:#9EC1F0;font-size:1.1em}
+  footer p{margin:.8rem 0 0;font-size:.9rem;letter-spacing:.14em;color:#B9D2F2}
 
   /* ---------- Botón de música ---------- */
   #music{
@@ -353,7 +353,7 @@
     <div class="env-back"></div>
     <div class="env-letter">
       <small>Nuestra boda</small>
-      <div class="names">Josias &amp; Katherine</div>
+      <div class="names">Josías &amp; Katherine</div>
       <div class="date">Domingo 29 de noviembre, 2026</div>
       <div class="for" id="introGuest"></div>
       <div class="pases" id="introPases"></div>
@@ -375,12 +375,12 @@
     <p class="invite seq" style="--i:0">Con la bendición de Dios y de nuestros padres, tenemos el placer de invitarles a nuestra boda</p>
 
     <h1 class="seq" style="--i:1">
-      <span>Josias</span><span class="y">y</span><span>Katherine</span>
+      <span>Josías</span><span class="y">y</span><span>Katherine</span>
     </h1>
 
     <div class="arch seq" style="--i:2">
       <div class="photo" id="heroPhoto">
-        <img src="fotos/portada.jpg" alt="Josias y Katherine" onerror="this.parentElement.classList.add('noimg');this.remove()">
+        <img src="fotos/portada.jpg" alt="Josías y Katherine" onerror="this.parentElement.classList.add('noimg');this.remove()">
       </div>
     </div>
 
@@ -410,7 +410,7 @@
       </div>
 
       <h3 class="mem-title" id="memTitle" hidden>Algunos de nuestros recuerdos juntos</h3>
-      <div class="memories" id="memories" hidden role="region" aria-roledescription="carrusel" aria-label="Recuerdos de Josias y Katherine" tabindex="0"
+      <div class="memories" id="memories" hidden role="region" aria-roledescription="carrusel" aria-label="Recuerdos de Josías y Katherine" tabindex="0"
            data-photos="fotos/husky.jpg,fotos/recuerdo-1.jpg,fotos/recuerdo-2.jpg,fotos/recuerdo-3.jpg,fotos/europa-1.jpg,fotos/europa-2.jpg,fotos/europa-3.jpg,fotos/europa-4.jpg,fotos/maravilla-1.jpg,fotos/maravilla-2.jpg">
         <button class="arrow prev" id="memPrev" aria-label="Foto anterior">‹</button>
         <button class="arrow next" id="memNext" aria-label="Foto siguiente">›</button>
@@ -546,7 +546,7 @@
   </section>
 
   <footer>
-    <div class="names">Josias <span class="script">y</span> Katherine</div>
+    <div class="names">Josías <span class="script">y</span> Katherine</div>
     <p>29 de noviembre, 2026</p>
   </footer>
 </main>
@@ -649,7 +649,7 @@ tick(); setInterval(tick, 1000);
   const f = d => new Date(d).toISOString().replace(/[-:]|\.\d{3}/g, "");
   const q = new URLSearchParams({
     action: "TEMPLATE",
-    text: "Boda de Josias y Katherine",
+    text: "Boda de Josías y Katherine",
     dates: f(CONFIG.fecha) + "/" + f(CONFIG.finEvento),
     location: CONFIG.lugar,
     details: "¡Gracias por acompañarnos! Etiqueta formal, evento solo para adultos."
@@ -715,7 +715,7 @@ document.querySelectorAll(".ph").forEach(async fig => {
     const bg = document.createElement("div");
     bg.className = "mem-bg"; bg.style.backgroundImage = 'url("' + o.src + '")';
     const im = document.createElement("img");
-    im.src = o.src; im.alt = "Recuerdo de Josias y Katherine, foto " + (i + 1);
+    im.src = o.src; im.alt = "Recuerdo de Josías y Katherine, foto " + (i + 1);
     d.append(bg, im);
     box.insertBefore(d, prev);
     return d;
@@ -771,7 +771,7 @@ document.querySelectorAll(".ph").forEach(async fig => {
     const b = document.createElement("button");
     b.type = "button"; b.className = "fam"; b.setAttribute("aria-label", "Ver foto ampliada");
     const im = new Image();
-    im.loading = "lazy"; im.alt = "Josias, Katherine y su familia";
+    im.loading = "lazy"; im.alt = "Josías, Katherine y su familia";
     im.onerror = () => b.remove();
     im.src = src;
     b.appendChild(im);
@@ -875,8 +875,8 @@ function sendRsvp(attending) {
   const plural = pases > 1;
   const cuantos = pases ? ` (invitación para ${pases} ${pases === 1 ? "persona" : "personas"})` : "";
   const msg = attending
-    ? `¡Hola Josias y Katherine! ${plural ? "Somos" : "Soy"} ${name}. ${plural ? "Confirmamos nuestra asistencia" : "Confirmo mi asistencia"} a su boda el domingo 29 de noviembre a las 4:00 PM.${pases ? ` Personas confirmadas: ${pases}.` : ""} ¡Gracias por la invitación!`
-    : `Hola Josias y Katherine, ${plural ? "somos" : "soy"} ${name}${cuantos}. Les agradezco mucho la invitación; lamentablemente ${plural ? "no podremos acompañarlos" : "no podré acompañarlos"}. ¡Les deseo un día hermoso!`;
+    ? `¡Hola Josías y Katherine! ${plural ? "Somos" : "Soy"} ${name}. ${plural ? "Confirmamos nuestra asistencia" : "Confirmo mi asistencia"} a su boda el domingo 29 de noviembre a las 4:00 PM.${pases ? ` Personas confirmadas: ${pases}.` : ""} ¡Gracias por la invitación!`
+    : `Hola Josías y Katherine, ${plural ? "somos" : "soy"} ${name}${cuantos}. Les agradezco mucho la invitación; lamentablemente ${plural ? "no podremos acompañarlos" : "no podré acompañarlos"}. ¡Les deseo un día hermoso!`;
   if (attending && window.confetti) {
     confetti({ particleCount: 110, spread: 80, origin: { y: .7 }, colors: ["#B8935A", "#D9C298", "#4A5441"] });
   }
