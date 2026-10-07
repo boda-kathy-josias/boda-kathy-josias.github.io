@@ -570,6 +570,38 @@ const $ = id => document.getElementById(id);
 
 /* ---------- Invitado personalizado: ?invitado=Familia%20Perez&pases=3 ---------- */
 const params = new URLSearchParams(location.search);
+
+/* ---------- MODO DEMO: con ?demo=1 se ocultan fecha, lugar e invitado reales (para grabar videos) ---------- */
+const DEMO = params.get("demo") === "1";
+let fechaMsg = "el domingo 29 de noviembre a las 4:00 PM";
+if (DEMO) {
+  params.set("invitado", "Familia Ejemplo");
+  params.set("pases", "2");
+  CONFIG.fecha     = "2027-06-12T16:00:00-06:00";
+  CONFIG.finEvento = "2027-06-13T04:00:00Z";
+  CONFIG.lugar     = "Jardín Los Lirios, Calle Principal 123, Ciudad Ejemplo";
+  fechaMsg         = "el sábado 12 de junio a las 4:00 PM";
+  const cambios = [
+    ["Domingo 29 de noviembre, 2026", "Sábado 12 de junio, 2027"],
+    ["29 de noviembre, 2026",         "12 de junio, 2027"],
+    ["14 de noviembre de 2026",       "28 de mayo de 2027"],
+    ["Casa Ávila · Quinta El Volcán", "Jardín Los Lirios"],
+    ["Calle al Parque Nacional El Boquerón, Km 18.5, San Salvador", "Calle Principal 123, Ciudad Ejemplo"]
+  ];
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const nodos = [];
+  while (walker.nextNode()) nodos.push(walker.currentNode);
+  nodos.forEach(n => {
+    if (/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) return;
+    let t = n.nodeValue;
+    cambios.forEach(([a, b]) => { t = t.split(a).join(b); });
+    if (t !== n.nodeValue) n.nodeValue = t;
+  });
+  const fotosLugar = document.querySelector(".ph.wide");
+  if (fotosLugar) fotosLugar.remove();
+  $("lnkMaps").href = "https://maps.google.com/?q=Jard%C3%ADn+Los+Lirios";
+  $("lnkWaze").href = "https://waze.com/ul?q=Jard%C3%ADn%20Los%20Lirios&navigate=yes";
+}
 const guest  = (params.get("invitado") || "").trim().slice(0, 60);
 const np     = parseInt(params.get("pases"), 10);
 const pases  = np >= 1 && np <= 20 ? np : null;      // null = enlace general, sin número
@@ -875,7 +907,7 @@ function sendRsvp(attending) {
   const plural = pases > 1;
   const cuantos = pases ? ` (invitación para ${pases} ${pases === 1 ? "persona" : "personas"})` : "";
   const msg = attending
-    ? `¡Hola Josías y Katherine! ${plural ? "Somos" : "Soy"} ${name}. ${plural ? "Confirmamos nuestra asistencia" : "Confirmo mi asistencia"} a su boda el domingo 29 de noviembre a las 4:00 PM.${pases ? ` Personas confirmadas: ${pases}.` : ""} ¡Gracias por la invitación!`
+    ? `¡Hola Josías y Katherine! ${plural ? "Somos" : "Soy"} ${name}. ${plural ? "Confirmamos nuestra asistencia" : "Confirmo mi asistencia"} a su boda ${fechaMsg}.${pases ? ` Personas confirmadas: ${pases}.` : ""} ¡Gracias por la invitación!`
     : `Hola Josías y Katherine, ${plural ? "somos" : "soy"} ${name}${cuantos}. Les agradezco mucho la invitación; lamentablemente ${plural ? "no podremos acompañarlos" : "no podré acompañarlos"}. ¡Les deseo un día hermoso!`;
   if (attending && window.confetti) {
     confetti({ particleCount: 110, spread: 80, origin: { y: .7 }, colors: ["#B8935A", "#D9C298", "#4A5441"] });
