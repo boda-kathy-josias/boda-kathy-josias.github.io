@@ -598,7 +598,7 @@ if (DEMO) {
     if (t !== n.nodeValue) n.nodeValue = t;
   });
   const fotosLugar = document.querySelector(".ph.wide");
-  if (fotosLugar) fotosLugar.remove();
+  if (fotosLugar) fotosLugar.dataset.alt = "Jardín Los Lirios, el lugar de nuestra boda";
   $("lnkMaps").href = "https://maps.google.com/?q=Jard%C3%ADn+Los+Lirios";
   $("lnkWaze").href = "https://waze.com/ul?q=Jard%C3%ADn%20Los%20Lirios&navigate=yes";
 }
